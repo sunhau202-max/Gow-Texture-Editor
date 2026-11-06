@@ -1,0 +1,65 @@
+name: Build Texture Editor
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Python 3.10 dipilih supaya hasilnya jalan mulus di Wine/Winlator
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install PyInstaller
+        run: python -m pip install --upgrade pip pyinstaller
+
+      # Versi FOLDER (onedir): tidak mengekstrak ke temp, stabil di Winlator
+      - name: Build program (folder)
+        run: python -m PyInstaller --noconfirm --onedir --windowed --name Texture_Editor --icon icon.ico gow_texture_tool.py
+
+      # Versi debug dengan jendela console (menampilkan error kalau gagal start)
+      - name: Build debug (console)
+        run: python -m PyInstaller --noconfirm --onedir --console --name Texture_Editor_debug --icon icon.ico --distpath dist_debug --workpath build_debug gow_texture_tool.py
+
+      # Rakit paket:  Texture Editor.zip
+      #   Readme-Indo/Eng, Leia-me-Br, Informasi-Indo, Information-Eng, Informacoes-Br
+      #   Texture Editor\  (Texture_Editor.exe + DLL dan file pendukung)
+      - name: Assemble package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path stage | Out-Null
+          Copy-Item -Path dist/Texture_Editor -Destination "stage/Texture Editor" -Recurse
+          Copy-Item -Path Readme-Indo.txt, Readme-Eng.txt, Leia-me-Br.txt, Informasi-Indo.txt, Information-Eng.txt, Informacoes-Br.txt -Destination stage/
+          Get-ChildItem stage | Format-Table Name
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Texture Editor
+          path: stage/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Texture Editor debug
+          path: dist_debug/Texture_Editor_debug/
+
+      - name: Zip for release (tag v*)
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: Compress-Archive -Path "stage/*" -DestinationPath "Texture Editor.zip"
+
+      - name: Release (tag v*)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Texture Editor.zip
