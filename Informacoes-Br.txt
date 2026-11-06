@@ -1,0 +1,52 @@
+﻿========================================================================
+ INFORMAÇÕES  -  GOW TEXTURE EDITOR  v1.0
+========================================================================
+
+O QUE FAZ
+  - Substitui texturas dentro dos WADs de God of War 1 e God of War 2 (PS2): exportar PNG,
+    substituir por PNG, pré-visualizar.
+  - Abre ISOs de GoW 1 e GoW 2 (PART1.PAK / PART2.PAK -> lista de WADs via GODOFWAR.TOC), um
+    único WAD ou uma pasta de WADs; grava direto na ISO com backup e Restaurar ISO.
+  - Dois tipos de textura: 8 bits (256 cores) e 4 bits (16 cores).
+  - Três idiomas: Indonesia, English, Português (Brasil).
+
+NÚMEROS (resultados da varredura usada para criar esta ferramenta)
+  - GoW 1: 216 WADs; 6.623 texturas vinculadas; 6.591 editáveis.
+  - GoW 2: 292 WADs; 8.427 texturas vinculadas; 8.327 editáveis.
+  A cobertura se limita aos WADs que o autor varreu. Outros WADs não podem ser garantidos.
+
+O QUE NÃO FAZ / FORA DO ESCOPO
+  - Mudar qualquer coisa além de texturas dentro de um WAD (modelos 3D, áudio, texto etc.).
+  - Reconstruir ISOs, mudar o tamanho de um WAD ou abrir arquivos PART*.PAK soltos fora de uma ISO.
+  - VPK, VAG, PSS/PSW e outros arquivos que não são WAD (ficam ocultos).
+  - Uma pequena parte das texturas: outros formatos de cor (16 bits ou várias imagens em uma
+    textura) e tamanhos fora do padrão. Ficam marcadas como "não suportado".
+
+NOTAS TÉCNICAS
+  - O tamanho do WAD nunca muda; apenas os dados da textura são sobrescritos.
+  - Posição do WAD na ISO: o GoW 1 usa número do PART + setor; o GoW 2 usa uma tabela de posições
+    (pode haver mais de uma cópia). Todas as cópias são gravadas; o backup é NOME.iso.texbak.
+  - Texturas de 8 bits usam o layout de pixels do PS2 (swizzle) e uma paleta de 256 cores na
+    ordem do GS; texturas de 4 bits são lineares. A ferramenta cuida disso automaticamente.
+  - Paletas compartilhadas / duplas: a paleta original é mantida (as cores da imagem são
+    mapeadas para ela).
+  - A escolha de idioma fica em texture_tools_settings.json; os erros são registrados em
+    texture_tool_error.txt (ambos ao lado do exe).
+
+STATUS DOS TESTES
+  Testado automaticamente: 14.918 texturas foram lidas e gravadas de volta com resultado
+  idêntico byte a byte; PNGs são lidos e gravados novamente sem diferenças; substituir pela
+  mesma imagem gera a mesma textura; só os dados da textura selecionada mudam. O leitor de ISO/TOC foi testado com ISOs simuladas feitas a partir dos GODOFWAR.TOC reais de GoW 1 e GoW 2 e de WADs reais (listas de WADs, leitura, gravação em todas as cópias, backup e restauração conferiram). O autor AINDA NÃO testou esta versão em uma ISO real do jogo nem no jogo. Use com cuidado e sempre em uma cópia.
+
+AVISO LEGAL
+  Esta ferramenta não contém arquivos do jogo. Use somente com a sua própria cópia do jogo.
+  Projeto de fã, sem vínculo com a Sony ou a Santa Monica Studio. God of War é marca
+  registrada de seus donos. A ferramenta é fornecida como está, sem garantia.
+
+CRÉDITOS
+  Feito por Nicho. Obrigado ao projeto God of War Browser e ao AssetForge, que ajudaram a
+  entender a estrutura dos arquivos e o fluxo de trabalho.
+
+========================================================================
+ Gow Language Editor by Nicho
+========================================================================

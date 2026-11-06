@@ -1,0 +1,75 @@
+﻿========================================================================
+ GOW TEXTURE EDITOR (Gow Language Editor by Nicho)  -  v1.0
+ Editor de texturas para arquivos WAD de God of War 1 e 2 (PS2)
+========================================================================
+
+CONTEÚDO DO PACOTE
+  Leia-me-Br.txt         : estas instruções (Português do Brasil)
+  Informacoes-Br.txt     : o que a ferramenta pode e não pode fazer
+  Readme-Indo.txt / Informasi-Indo.txt      : versão em Bahasa Indonesia
+  Readme-Eng.txt / Information-Eng.txt      : versão em English
+  Texture Editor\        : a pasta do programa (Texture_Editor.exe + arquivos de apoio)
+
+IMPORTANTE: não mova só o Texture_Editor.exe para outro lugar. Ele precisa das DLLs e
+dos arquivos ao lado dele. Mantenha a pasta "Texture Editor" INTEIRA junta.
+
+O QUE É?
+Uma ferramenta de PC (Windows e Wine/Winlator) que substitui as TEXTURAS dentro dos
+arquivos WAD de God of War 1 e God of War 2 (PS2). Somente texturas: a ferramenta não
+altera nenhum outro arquivo dentro do WAD e não muda o tamanho do WAD.
+
+COMO USAR
+  1. Execute o Texture_Editor.exe. Na primeira vez você escolhe o idioma
+     (Indonesia / English / Português); dá para mudar a qualquer momento na janela principal.
+  2. Abra uma fonte:
+       Abrir ISO          : lê uma ISO de God of War; clique em > em PART1.PAK / PART2.PAK para ver os WADs.
+       Abrir WAD          : abre um único arquivo .WAD.
+       Abrir pasta de WADs: lista todos os .WAD de uma pasta.
+     Outros arquivos (VPK, VAG, PSS/PSW etc.) ficam ocultos.
+  3. Clique em um WAD na árvore "Fonte" (esquerda). A lista de texturas aparece à direita.
+     Digite em "Pesquisar texturas" para filtrar. Selecione uma textura para ver a prévia.
+  4. "Exportar PNG" salva a textura como imagem PNG. Edite esse PNG no seu editor de
+     imagem / pixel art favorito (não mude o tamanho).
+  5. "Substituir por PNG" coloca o seu PNG editado nessa textura.
+  6. Clique em SALVAR. O resultado é gravado no WAD original e uma cópia do WAD intacto é
+     guardada uma vez como NOME.WAD.bak. "Salvar como" grava em outro arquivo.
+
+ISO E PAK
+  Abrir ISO lê uma ISO de God of War 1 ou 2 e mostra PART1.PAK e PART2.PAK. Clique no > ao
+  lado de um deles para ver os WADs dentro (lidos pelo GODOFWAR.TOC da ISO; arquivos VPK,
+  VAG, PSS/PSW não aparecem). Escolha um WAD, edite as texturas e depois SALVAR: o WAD editado
+  é gravado direto na ISO, em TODAS as cópias (o GoW 2 guarda alguns WADs em mais de um lugar).
+  Como o tamanho do WAD nunca muda, nada se desloca.
+  Antes de gravar, a ferramenta confere o marcador do WAD em cada local e guarda o conteúdo
+  original em NOME.iso.texbak. O botão "Restaurar ISO" recupera tudo desse backup.
+  IMPORTANTE: trabalhe em uma CÓPIA da ISO e feche outros programas que usem essa ISO.
+
+SOBRE A IMAGEM
+  - O PNG deve ter o mesmo tamanho da textura original. Se for diferente, a ferramenta
+    oferece redimensionar automaticamente (nearest, bom para pixel art).
+  - Texturas do PS2 usam paleta: no máximo 256 cores (texturas de 8 bits) ou 16 cores
+    (texturas de 4 bits). A ferramenta converte as cores do seu PNG para a paleta
+    automaticamente. Pixel art com poucas cores fica exata; imagens coloridas têm as cores
+    reduzidas.
+  - Texturas cuja paleta é compartilhada com outras texturas, ou que têm paleta dupla,
+    aparecem como "paleta original mantida": as cores da imagem são mapeadas para a
+    paleta original, para não quebrar outras texturas / a segunda paleta.
+  - A transparência do PNG é suportada (o alfa do PS2 vai de 0 a 128).
+
+DICAS PARA INICIANTES
+  - Trabalhe sempre em uma CÓPIA. Guarde sua ISO / PAK original.
+  - Mude uma textura por teste e experimente no jogo.
+  - Não mude o tamanho da imagem e não acrescente muitas cores sem necessidade.
+
+SE ENCONTRAR UM ERRO / BUG
+A ferramenta registra erros em texture_tool_error.txt (ao lado do exe) e mostra o local na
+janela de erro. Envie esse texto (ou uma foto) com os nomes do WAD e da textura abertos
+ao autor da ferramenta.
+
+WINLATOR / WINE
+Use esta versão em pasta (não o exe de arquivo único). Se a janela de arquivos der
+problema, mova o WAD para uma pasta fácil de alcançar e use Abrir pasta de WADs.
+
+========================================================================
+ Gow Language Editor by Nicho
+========================================================================
